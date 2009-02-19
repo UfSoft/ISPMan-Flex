@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mx:Application layout="vertical" label="ISPMan" paddingBottom="5" paddingLeft="5" backgroundColor="#000000"
+                xmlns:mx="http://www.adobe.com/2006/mxml" paddingTop="5" paddingRight="5" backgroundGradientAlphas="[0.6,1.0]"
+                backgroundGradientColors="[0x3D7AB5,0x53718E]" pageTitle="ISPMan" horizontalGap="2" width="100%"
+                height="100%" creationComplete="launch();"
+                >
+    <mx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
+
+            private var authWin:authentication;
+
+            private function launch():void {
+                authWin = PopUpManager.createPopUp(
+                    this, authentication, true) as authentication;
+                PopUpManager.centerPopUp(authWin);
+            }
+        ]]>
+    </mx:Script>
+    <mx:Panel fontStyle="normal" paddingBottom="5" title="ISPMan Control Panel" paddingLeft="5"
+              roundedBottomCorners="true" color="#ffffff" horizontalAlign="center" paddingTop="5"
+              cornerRadius="10" fontSize="12" paddingRight="5" id="main" fontWeight="bold"
+              width="100%" x="0" height="100%" y="0">
+        <mx:HBox width="0" height="0">
+            <mx:Button width="0" height="0"/>
+        </mx:HBox>
+        <mx:ControlBar>
+            <mx:HBox>
+                <mx:Button label="Authenticate" click="launch()"/>
+                <mx:Text id="statusText" text="Blah"/>
+            </mx:HBox>
+        </mx:ControlBar>
+    </mx:Panel>
+</mx:Application>
