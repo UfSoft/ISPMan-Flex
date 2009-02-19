@@ -1,51 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
-                layout="absolute"
-                showCloseButton="true"
-                title="Authentication Required"
-                close="authWin_close(event);"
-                initialize="authWin_initialize(event)"
-                creationComplete="authWin_creationComplete()">
-    <mx:Script source="org/ufsoft/authenticationScript.as"/>
-    <mx:Script>
-        <![CDATA[
-            import flash.events.KeyboardEvent;
-            import mx.events.FlexEvent;
-            import mx.core.IFlexDisplayObject;
-            import mx.events.CloseEvent;
-            import mx.managers.PopUpManager;
-            import mx.controls.Alert;
-
-
-            private function authWin_initialize(evt:FlexEvent):void {
-                evt.target.isPopUp = false;
-            }
-
-            private function authWin_creationComplete():void {
-                username.setFocus();
-                this.addEventListener(KeyboardEvent.KEY_UP, submit_Ok);
-            }
-
-            private function authWin_close(evt:CloseEvent):void {
-                PopUpManager.removePopUp(evt.target as IFlexDisplayObject);
-            }
-
-
-            private function submit_Ok(evt:KeyboardEvent):void {
-                if ( password.text.length > 0 && username.text.length > 0) {
-                    authButton.enabled = true;
-                } else {
-                    authButton.enabled = false;
-                }
-            }
-
-            private function submitForm(evt:Event):void {
-                Alert.show("Authenticating with backend server");
-                statusText.text = "Authentication Failed"
-            }
-
-        ]]>
-    </mx:Script>
+<isp:Auth
+          xmlns:mx="http://www.adobe.com/2006/mxml"
+          layout="absolute"
+          showCloseButton="true"
+          title="Authentication Required"
+          xmlns:isp="org.ufsoft.ispman.*">
     <mx:Style>
         .error { color: red; }
     </mx:Style>
@@ -58,6 +17,6 @@
         </mx:FormItem>
         <mx:Text textAlign="center" width="100%" id="statusText" styleName="error"/>
         <mx:Button label="Authenticate" id ="authButton" enabled="false"
-                   width="100%" click="submitForm(event)"/>
+                   width="100%"/>
     </mx:Form>
-</mx:TitleWindow>
+</isp:Auth>
